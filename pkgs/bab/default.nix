@@ -9,24 +9,24 @@
 let
   inherit (stdenvNoCC.hostPlatform) system;
   shaMap = {
-    x86_64-linux = "1nkjz7759l27c3hz37f53c3f8nnx2h5rpjzs88j99ykr6q580d3z";
-    armv7l-linux = "07ixdvmrpiwh5gibv5i2fcxnhckwrr773la6y4vi5zwvnycylcvi";
-    aarch64-linux = "02sjmpqwi2fryc4labmk82w6k8qd8gxs2845w32c11aiww65sk06";
-    x86_64-darwin = "0xwip5phrg5rl2nz6xlskr3l07ksv774qj6h1fwa3iqz6lnc8ka5";
-    aarch64-darwin = "1hjf85p3w34v5777a3qnv5xx13dwyxwa4rdsfvdpaynrpffrhxwl";
+    x86_64-linux = "02f0c1q1sl96lkvkxc0x9p5swi9bm0yhwbjwi89xnj7z7brjq3sz";
+    armv7l-linux = "03z70jyq1lv879qav2bmxzqlsf6gv1rbzr9dfyjxz3zc30gw0fsh";
+    aarch64-linux = "1fy06v2hj1p3y69vpk2p75ms6w9nv348fanm5925sihicd1ymm8q";
+    x86_64-darwin = "094d16i28rh7a0r8jhqcv87zkmm1g4bljlp6s7wnv5k832nw282n";
+    aarch64-darwin = "0z2ppnaw97y2v07h9sx9wcycgfzdv54y3wfixlcwnbq6qm977qhg";
   };
 
   urlMap = {
-    x86_64-linux = "https://github.com/bab-sh/bab/releases/download/v0.7.13/bab_0.7.13_Linux_x86_64.tar.gz";
-    armv7l-linux = "https://github.com/bab-sh/bab/releases/download/v0.7.13/bab_0.7.13_Linux_armv7.tar.gz";
-    aarch64-linux = "https://github.com/bab-sh/bab/releases/download/v0.7.13/bab_0.7.13_Linux_arm64.tar.gz";
-    x86_64-darwin = "https://github.com/bab-sh/bab/releases/download/v0.7.13/bab_0.7.13_macOS_x86_64.tar.gz";
-    aarch64-darwin = "https://github.com/bab-sh/bab/releases/download/v0.7.13/bab_0.7.13_macOS_arm64.tar.gz";
+    x86_64-linux = "https://github.com/bab-sh/bab/releases/download/v0.7.14/bab_0.7.14_Linux_x86_64.tar.gz";
+    armv7l-linux = "https://github.com/bab-sh/bab/releases/download/v0.7.14/bab_0.7.14_Linux_armv7.tar.gz";
+    aarch64-linux = "https://github.com/bab-sh/bab/releases/download/v0.7.14/bab_0.7.14_Linux_arm64.tar.gz";
+    x86_64-darwin = "https://github.com/bab-sh/bab/releases/download/v0.7.14/bab_0.7.14_macOS_x86_64.tar.gz";
+    aarch64-darwin = "https://github.com/bab-sh/bab/releases/download/v0.7.14/bab_0.7.14_macOS_arm64.tar.gz";
   };
 in
 stdenvNoCC.mkDerivation {
   pname = "bab";
-  version = "0.7.13";
+  version = "0.7.14";
   src = fetchurl {
     url = urlMap.${system};
     sha256 = shaMap.${system};
