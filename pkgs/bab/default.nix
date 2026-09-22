@@ -9,24 +9,24 @@
 let
   inherit (stdenvNoCC.hostPlatform) system;
   shaMap = {
-    x86_64-linux = "0shawslr8ccwh2j09pa1azkwryqx2cmdmqy5d3gbplji8wa460vb";
-    armv7l-linux = "0l0gl6c60xnjmkqggxf0r289wrg2mmg5p3wi0yf21llqjxrbcjfg";
-    aarch64-linux = "0457m9a58jdjknlyc1358vb7drl9gz4zw1518avzdplmzsaw3lb4";
-    x86_64-darwin = "1h8nw5qvfcrqx8xbn6cvn55hkw83wv9mv01pjygmrngyqr533y5f";
-    aarch64-darwin = "1kpfljcny94hfymyrv2lwr18x50gl8655yxwalpnhddixzd336hs";
+    x86_64-linux = "0afzn0k376vw52cg2zf4z0nwxikl5dxpfxgnlx0hvl8wn0ix88jm";
+    armv7l-linux = "0zwkksq8hawq3kidhwir1b45aa8nwpmcihmjzjwsjlj42limdjm5";
+    aarch64-linux = "00hzs2ffxipnbddxlvgk6k5iw5pv3r9zjh28gzx1mclhlajnqm68";
+    x86_64-darwin = "0ccjzykdavcbbw3fg7n3rdw5srg939zgb7yn530nvp460zcsiwgy";
+    aarch64-darwin = "1wrh7dnciimci0bzc7scsgcpzizdxsqf790rfyzcxvia33s6q8m0";
   };
 
   urlMap = {
-    x86_64-linux = "https://github.com/bab-sh/bab/releases/download/v0.8.1/bab_0.8.1_Linux_x86_64.tar.gz";
-    armv7l-linux = "https://github.com/bab-sh/bab/releases/download/v0.8.1/bab_0.8.1_Linux_armv7.tar.gz";
-    aarch64-linux = "https://github.com/bab-sh/bab/releases/download/v0.8.1/bab_0.8.1_Linux_arm64.tar.gz";
-    x86_64-darwin = "https://github.com/bab-sh/bab/releases/download/v0.8.1/bab_0.8.1_macOS_x86_64.tar.gz";
-    aarch64-darwin = "https://github.com/bab-sh/bab/releases/download/v0.8.1/bab_0.8.1_macOS_arm64.tar.gz";
+    x86_64-linux = "https://github.com/bab-sh/bab/releases/download/v0.8.2/bab_0.8.2_Linux_x86_64.tar.gz";
+    armv7l-linux = "https://github.com/bab-sh/bab/releases/download/v0.8.2/bab_0.8.2_Linux_armv7.tar.gz";
+    aarch64-linux = "https://github.com/bab-sh/bab/releases/download/v0.8.2/bab_0.8.2_Linux_arm64.tar.gz";
+    x86_64-darwin = "https://github.com/bab-sh/bab/releases/download/v0.8.2/bab_0.8.2_macOS_x86_64.tar.gz";
+    aarch64-darwin = "https://github.com/bab-sh/bab/releases/download/v0.8.2/bab_0.8.2_macOS_arm64.tar.gz";
   };
 in
 stdenvNoCC.mkDerivation {
   pname = "bab";
-  version = "0.8.1";
+  version = "0.8.2";
   src = fetchurl {
     url = urlMap.${system};
     sha256 = shaMap.${system};
@@ -37,6 +37,7 @@ stdenvNoCC.mkDerivation {
   nativeBuildInputs = [ installShellFiles ];
 
   installPhase = ''
+    runHook preInstall
     mkdir -p $out/bin
     cp -vr bab $out/bin/bab
     installShellCompletion --cmd bab \
@@ -46,6 +47,7 @@ stdenvNoCC.mkDerivation {
     mkdir -p $out/share/doc/bab
     cp -v README.md $out/share/doc/bab/README.md
     cp -v LICENSE $out/share/doc/bab/LICENSE
+    runHook postInstall
   '';
 
   meta = {
